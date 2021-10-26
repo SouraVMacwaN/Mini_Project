@@ -1,0 +1,174 @@
+import java.awt.event.*;
+import java.awt.*;
+
+public class sign_up extends Frame {
+
+    sign_up(){
+        this.setLayout(null);
+
+
+        Color cc = new Color(0, 83, 98);
+        Color c1 = new Color(0,54,65);
+        Color c2 = new Color(38,38,38);
+        this.setBackground(cc);
+
+        Label f = new Label("First Name: ");
+        TextField first =new TextField(30);
+        f.setBounds(20,40,120,20);
+        first.setBounds(150,40,152,20);
+        f.setForeground(Color.WHITE);
+        first.setForeground(Color.white);
+        first.setBackground(c2);
+        this.add(f);
+        this.add(first);
+
+        Label l = new Label("Last Name: ");
+        TextField last =new TextField(30);
+        l.setBounds(20,70,120,20);
+        last.setBounds(150,70,152,20);
+        l.setForeground(Color.WHITE);
+        last.setForeground(Color.white);
+        last.setBackground(c2);
+        this.add(l);
+        this.add(last);
+
+        Label u = new Label("Username: ");
+        TextField username =new TextField(30);
+        u.setBounds(20,100,120,20);
+        username.setBounds(150,100, 152, 20);
+        u.setForeground(Color.WHITE);
+        username.setForeground(Color.white);
+        username.setBackground(c2);
+        this.add(u);
+        this.add(username);
+
+        Label e = new Label("E-mail: ");
+        TextField email =new TextField(30);
+        e.setBounds(20, 190, 120, 20);
+        email.setBounds(150,190,152, 20);
+        e.setForeground(Color.WHITE);
+        email.setForeground(Color.white);
+        email.setBackground(c2);
+        this.add(e);
+        this.add(email);
+
+        Label m = new Label("Mobile No.: ");
+        TextField mobile =new TextField(30);
+        m.setBounds(20, 220, 120, 20);
+        mobile.setBounds(150,220,152,20);
+        m.setForeground(Color.WHITE);
+        mobile.setForeground(Color.white);
+        mobile.setBackground(c2);
+        this.add(m);
+        this.add(mobile);
+
+        Label c = new Label("City: ");
+        TextField city = new TextField(30);
+        c.setForeground(Color.WHITE);
+        city.setForeground(Color.white);
+        city.setBackground(c2);
+        c.setBounds(20,280,120,20);
+        city.setBounds(150, 280, 102, 20);
+        this.add(c);
+        this.add(city);
+
+        Label p = new Label("Password: ");
+        TextField password =new TextField(30);
+        password.setEchoChar('*');
+        p.setBounds(20,310,120,20);
+        password.setBounds(150, 310, 130, 20);
+
+        p.setForeground(Color.WHITE);
+        password.setForeground(Color.white);
+        password.setBackground(c2);
+        this.add(p);
+        this.add(password);
+
+        Label p2 = new Label("Re-type Password: ");
+        TextField password2 =new TextField(30);
+        password2.setEchoChar('*');
+        p2.setBounds(20,335,120,20);
+        password2.setBounds(150, 335, 130, 20);
+
+        p2.setForeground(Color.WHITE);
+        password2.setForeground(Color.white);
+        password2.setBackground(c2);
+        this.add(p2);
+        this.add(password2);
+
+        Label gender = new Label("Gender: ");
+        Checkbox male = new Checkbox("Male");
+        Checkbox female = new Checkbox("Female");
+        gender.setForeground(Color.WHITE);
+        male.setForeground(Color.WHITE);
+        female.setForeground(Color.WHITE);
+        gender.setBounds(20, 130, 120, 20);
+        male.setBounds(150,130, 50, 20);
+        female.setBounds(150,160,60,20);
+        this.add(gender);
+        this.add(male);
+        this.add(female);
+
+        Label birthdate = new Label("Birth Date: ");
+        birthdate.setBounds(20,250,120,20);
+        birthdate.setForeground(Color.WHITE);
+        this.add(birthdate);
+        Choice day = new Choice();
+        day.setBounds(150,250,50,20);
+        day.setForeground(Color.WHITE);
+        day.setBackground(c2);
+
+        for(int i=1; i<=31; i++){
+            day.add(String.valueOf(i)); //Day
+        }
+        this.add(day);
+
+        Choice month = new Choice();
+        month.setForeground(Color.WHITE);
+        month.setBackground(c2);
+        month.setBounds(205,250,80,20);
+        month.add("January");
+        month.add("February");
+        month.add("March");
+        month.add("April");
+        month.add("May");
+        month.add("June");
+        month.add("July");
+        month.add("August");
+        month.add("September");
+        month.add("October");
+        month.add("November");
+        month.add("December");
+
+        this.add(month);
+
+        Choice year = new Choice();
+        for(int j=2021; j>=1900; j--){
+            year.add(String.valueOf(j)); //Year
+        }
+        year.setForeground(Color.WHITE);
+        year.setBackground(c2);
+        year.setBounds(290,250,65,20);
+        this.add(year);
+
+        Button submit = new Button("Sign Up");
+        submit.setForeground(Color.white);
+        submit.setBackground(c1);
+        submit.setBounds(80, 360, 100, 20);
+        this.add(submit);
+
+        Button cancel = new Button("Cancel");
+        cancel.setForeground(Color.white);
+        cancel.setBackground(Color.red);
+        cancel.setBounds(200, 360, 100, 20);
+        this.add(cancel);
+	 
+	this.setLayout(null);
+	this.setSize(400,400);
+	this.setVisible(true);
+
+
+    }
+
+    
+}
