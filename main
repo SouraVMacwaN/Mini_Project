@@ -1,0 +1,121 @@
+import java.awt.*;
+import java.awt.event.*;
+
+public class mini extends Frame {
+
+class mini()
+{
+
+Label l1=new Label("Select Your Gender");
+l1.setBounds(20,110,120,30);
+this.add(l1);
+
+CheckboxGroup cb=new CheckboxGroup();
+Checkbox c1=new Checkbox("Male",cb,true);
+Checkbox c2=new Checkbox("Female",cb,false);
+c1.setBounds(140,110,60,30);
+c2.setBounds(200,110,70,30);
+this.add(c1);
+this.add(c2);
+
+Label l2=new Label("Are you willing to run marathons?");
+l2.setBounds(20,380,170,40);
+this.add(l2);
+
+Checkbox c3=new Checkbox("Yes",cb,true);
+Checkbox c4=new Checkbox("No",cb,false);
+
+c3.setBounds(220,380,60,30);
+c4.setBounds(270,380,60,30);
+this.add(c3);
+this.add(c4);
+
+Label l3=new Label("Enter your height");
+l3.setBounds(20,30,120,20);
+this.add(l3);
+
+TextField t1=new TextField();
+t1.setBounds(140,30,120,20);
+this.add(t1);
+
+Label l14=new Label("Enter your weight");
+l14.setBounds(20,75,120,20);
+this.add(l14);
+
+TextField t2=new TextField();
+t2.setBounds(140,75,120,20);
+this.add(t2);
+
+
+Label l5=new Label("Select Your City");
+l5.setBounds(20,200,120,30);
+this.add(l5);
+
+Choice ch=new Choice();
+ch.setBounds(160,205,75,75);
+ch.add("Mumbai");
+ch.add("Chennai");
+ch.add("Benaglore");
+ch.add("Delhi");
+ch.add("Kolkata");
+this.add(ch);
+
+Label l6=new Label("Medical history");
+l6.setBounds(20,240,120,30);
+this.add(l6);
+
+Checkbox c11=new Checkbox("Diabetes");
+Checkbox c12=new Checkbox("Dyslexia");
+Checkbox c13=new Checkbox("Migraine");
+Checkbox c14=new Checkbox("Autism");
+Checkbox c15=new Checkbox("Asthma");
+
+
+c11.setBounds(150,240,60,30);
+c12.setBounds(220,240,60,30);
+c13.setBounds(290,240,60,30);
+c14.setBounds(360,240,60,30);
+c15.setBounds(430,240,60,30);
+this.add(c11);
+this.add(c12);
+this.add(c13);
+this.add(c14);
+this.add(c15);
+
+TextArea ta=new TextArea();
+ta.setBounds(80,290,190,80);
+this.add(ta);
+
+Label l7=new Label("Others");
+l7.setBounds(20,280,120,30);
+this.add(l7);
+
+Button b1=new Button("Submit");
+b1.setBounds(150,450,80,30); 
+this.add(b1);
+
+Label l11=new Label("Age");
+l11.setBounds(20,150,30,30);
+this.add(l11);
+
+TextField t33=new TextField();
+t33.setBounds(70,155,50,20);
+this.add(t33);
+
+
+
+l1.setFont(new Font("SansSerif", Font.BOLD, 12));
+l2.setFont(new Font("SansSerif", Font.BOLD, 12));
+l11.setFont(new Font("SansSerif", Font.BOLD, 12));
+l7.setFont(new Font("SansSerif", Font.BOLD, 12));
+l5.setFont(new Font("SansSerif", Font.BOLD, 12));
+l6.setFont(new Font("SansSerif", Font.BOLD, 12));
+l3.setFont(new Font("SansSerif", Font.BOLD, 12));
+l14.setFont(new Font("SansSerif", Font.BOLD, 12));
+
+this.setSize(600,800);
+this.setLayout(null);
+this.setVisible(true);
+}
+
+}
