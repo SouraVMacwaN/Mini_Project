@@ -3,7 +3,7 @@ import java.awt.event.*;
 
 public class mini extends Frame {
 
-class mini()
+mini()
 {
 
 Label l1=new Label("Select Your Gender");
