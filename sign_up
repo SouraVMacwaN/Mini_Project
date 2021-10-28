@@ -1,16 +1,18 @@
 import java.awt.event.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class sign_up extends Frame {
 
     sign_up(){
         this.setLayout(null);
 
-
+	Frame ft=new Frame();
         Color cc = new Color(0, 83, 98);
         Color c1 = new Color(0,54,65);
         Color c2 = new Color(38,38,38);
-        this.setBackground(cc);
+        ft.setBackground(cc);
 
         Label f = new Label("First Name: ");
         TextField first =new TextField(30);
@@ -19,8 +21,8 @@ public class sign_up extends Frame {
         f.setForeground(Color.WHITE);
         first.setForeground(Color.white);
         first.setBackground(c2);
-        this.add(f);
-        this.add(first);
+        ft.add(f);
+        ft.add(first);
 
         Label l = new Label("Last Name: ");
         TextField last =new TextField(30);
@@ -29,8 +31,8 @@ public class sign_up extends Frame {
         l.setForeground(Color.WHITE);
         last.setForeground(Color.white);
         last.setBackground(c2);
-        this.add(l);
-        this.add(last);
+        ft.add(l);
+        ft.add(last);
 
         Label u = new Label("Username: ");
         TextField username =new TextField(30);
@@ -39,8 +41,8 @@ public class sign_up extends Frame {
         u.setForeground(Color.WHITE);
         username.setForeground(Color.white);
         username.setBackground(c2);
-        this.add(u);
-        this.add(username);
+        ft.add(u);
+        ft.add(username);
 
         Label e = new Label("E-mail: ");
         TextField email =new TextField(30);
@@ -49,8 +51,8 @@ public class sign_up extends Frame {
         e.setForeground(Color.WHITE);
         email.setForeground(Color.white);
         email.setBackground(c2);
-        this.add(e);
-        this.add(email);
+        ft.add(e);
+        ft.add(email);
 
         Label m = new Label("Mobile No.: ");
         TextField mobile =new TextField(30);
@@ -59,8 +61,8 @@ public class sign_up extends Frame {
         m.setForeground(Color.WHITE);
         mobile.setForeground(Color.white);
         mobile.setBackground(c2);
-        this.add(m);
-        this.add(mobile);
+        ft.add(m);
+        ft.add(mobile);
 
         Label c = new Label("City: ");
         TextField city = new TextField(30);
@@ -69,8 +71,8 @@ public class sign_up extends Frame {
         city.setBackground(c2);
         c.setBounds(20,280,120,20);
         city.setBounds(150, 280, 102, 20);
-        this.add(c);
-        this.add(city);
+        ft.add(c);
+        ft.add(city);
 
         Label p = new Label("Password: ");
         TextField password =new TextField(30);
@@ -81,8 +83,8 @@ public class sign_up extends Frame {
         p.setForeground(Color.WHITE);
         password.setForeground(Color.white);
         password.setBackground(c2);
-        this.add(p);
-        this.add(password);
+        ft.add(p);
+        ft.add(password);
 
         Label p2 = new Label("Re-type Password: ");
         TextField password2 =new TextField(30);
@@ -93,8 +95,8 @@ public class sign_up extends Frame {
         p2.setForeground(Color.WHITE);
         password2.setForeground(Color.white);
         password2.setBackground(c2);
-        this.add(p2);
-        this.add(password2);
+        ft.add(p2);
+        ft.add(password2);
 
         Label gender = new Label("Gender: ");
         Checkbox male = new Checkbox("Male");
@@ -105,14 +107,14 @@ public class sign_up extends Frame {
         gender.setBounds(20, 130, 120, 20);
         male.setBounds(150,130, 50, 20);
         female.setBounds(150,160,60,20);
-        this.add(gender);
-        this.add(male);
-        this.add(female);
+        ft.add(gender);
+        ft.add(male);
+        ft.add(female);
 
         Label birthdate = new Label("Birth Date: ");
         birthdate.setBounds(20,250,120,20);
         birthdate.setForeground(Color.WHITE);
-        this.add(birthdate);
+        ft.add(birthdate);
         Choice day = new Choice();
         day.setBounds(150,250,50,20);
         day.setForeground(Color.WHITE);
@@ -121,7 +123,7 @@ public class sign_up extends Frame {
         for(int i=1; i<=31; i++){
             day.add(String.valueOf(i)); //Day
         }
-        this.add(day);
+        ft.add(day);
 
         Choice month = new Choice();
         month.setForeground(Color.WHITE);
@@ -140,7 +142,7 @@ public class sign_up extends Frame {
         month.add("November");
         month.add("December");
 
-        this.add(month);
+        ft.add(month);
 
         Choice year = new Choice();
         for(int j=2021; j>=1900; j--){
@@ -149,26 +151,33 @@ public class sign_up extends Frame {
         year.setForeground(Color.WHITE);
         year.setBackground(c2);
         year.setBounds(290,250,65,20);
-        this.add(year);
+        ft.add(year);
 
         Button submit = new Button("Sign Up");
         submit.setForeground(Color.white);
         submit.setBackground(c1);
         submit.setBounds(80, 360, 100, 20);
-        this.add(submit);
+        ft.add(submit);
 
         Button cancel = new Button("Cancel");
         cancel.setForeground(Color.white);
         cancel.setBackground(Color.red);
         cancel.setBounds(200, 360, 100, 20);
-        this.add(cancel);
+        ft.add(cancel);
 	 
-	this.setLayout(null);
-	this.setSize(400,400);
-	this.setVisible(true);
+	ft.setLayout(null);
+	ft.setSize(400,400);
+	ft.setVisible(true);
+
+	cancel.addActionListener(new ActionListener(){  
+    public void actionPerformed(ActionEvent e){  
+		ft.dispose();
+	
+    }  
+    });  
+
+	
 
 
     }
 
-    
-}
