@@ -1,0 +1,166 @@
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+
+
+public class pace_calc extends  Frame{
+	TextField distance;
+	static Choice m;
+            pace_calc(){
+                Frame p = new Frame();
+                p.setTitle("Marathon Pace Calculator");
+                this.setLayout(null);
+
+                Color color = new Color(0, 83, 98);
+                Color color2 = new Color(38, 38, 38);
+                p.setBackground(color);
+
+                Label p1 = new Label("Event:");
+                p1.setBounds(20, 40, 120, 20);
+                p1.setForeground(Color.WHITE);
+               p1.setFont(new Font("SansSerif", Font.BOLD, 14));
+                p.add(p1);
+
+                m = new Choice();
+               
+                
+                m.setBounds(140, 40, 120, 20);
+                m.setForeground(Color.WHITE);
+                m.setBackground(color2);
+                m.setFont(new Font("SansSerif", Font.PLAIN, 14));
+                
+                m.add("");
+                m.add("marathon");
+                m.add("half_marathon");
+                m.add("m_thirty");
+                m.add("m_fifteen");
+                m.add("m_ten");
+                m.add("m_five");
+                p.add(m);
+                
+                
+                Label p2 = new Label("Distance(in km):");
+                p2.setBounds(20, 80, 120, 20);
+                p2.setForeground(Color.WHITE);
+                p2.setFont(new Font("SansSerif", Font.BOLD, 14));
+                p.add(p2);
+
+                distance = new TextField();
+                distance.setBounds(140, 80, 50, 20);
+                distance.setForeground(Color.white);
+                distance.setBackground(color2);
+                distance.setFont(new Font("SansSerif", Font.BOLD, 14));
+                p.add(distance);
+
+
+
+                Label p3 = new Label("Time:");
+                p3.setBounds(20, 110, 120, 20);
+                p3.setForeground(Color.WHITE);
+                p3.setFont(new Font("SansSerif", Font.BOLD, 14));
+                p.add(p3);
+
+                TextField time = new TextField();
+                time.setBounds(140, 110, 50, 20);
+                time.setForeground(Color.white);
+                time.setBackground(color2);
+                time.setFont(new Font("SansSerif", Font.BOLD, 14));
+                p.add(time);
+
+                Label p4 = new Label("Speed:");
+                p4.setBounds(20, 140, 120, 20);
+                p4.setForeground(Color.WHITE);
+                p4.setFont(new Font("SansSerif", Font.BOLD, 14));
+                p.add(p4);
+
+                TextField speed = new TextField();
+                speed.setBounds(140, 140, 50, 20);
+                speed.setForeground(Color.white);
+                speed.setBackground(color2);
+                speed.setFont(new Font("SansSerif", Font.BOLD, 14));
+                p.add(speed);
+
+
+
+                Label p5 = new Label("Pace:");
+                p5.setBounds(40, 260, 120, 20);
+                p5.setForeground(Color.WHITE);
+                p5.setFont(new Font("SansSerif", Font.BOLD, 28));
+                p.add(p5);
+
+                TextField pace = new TextField(30);
+                pace.setBounds(160, 250, 140, 40);
+                pace.setForeground(Color.white);
+                pace.setBackground(color2);
+                pace.setFont(new Font("SansSerif", Font.BOLD, 14));
+                p.add(pace);
+
+                Button b = new Button("Calculate Pace");
+                b.setBounds(120, 200, 140, 30);
+                b.setForeground(Color.white);
+                b.setBackground(Color.RED);
+                b.setFont(new Font("SansSerif", Font.BOLD, 14));
+                p.add(b);
+                
+                
+                b.addActionListener(new ActionListener(){  
+                    public void actionPerformed(ActionEvent e){  
+                    	 String s1 = distance.getText();    
+                         String s2 = time.getText();
+                     	
+                         double d = Double.parseDouble(s1);    
+                         double t = Double.parseDouble(s2);    
+                         double ans = 0;
+                         
+                         ans = d/t;
+                         String result = String.valueOf(ans); 
+                    	 pace.setText(result);    
+                    	 
+                    	 
+                    }  
+                    });  
+                p.setLayout(null);
+                p.setSize(400, 400);
+                p.setVisible(true);
+                
+                m.addItemListener(new ItemListener(){
+                public void itemStateChanged(ItemEvent e)
+                {
+                	String temp = (String)m.getSelectedItem();
+                    if(temp == "marathon")
+                    {
+                    	distance.setText("100");
+                    }
+                    
+                    if(temp == "half_marathon")
+                    {
+                    	distance.setText("50");
+                    }
+                    
+                    if(temp == "m_thirty")
+                    {
+                    	distance.setText("30");
+                    }
+                    
+                    if(temp == "m_fifteen")
+                    {
+                    	distance.setText("15");
+                    }
+                    
+                    if(temp == "m_ten")
+                    {
+                    	distance.setText("10");
+                    }
+                    
+                    if(temp == "m_five")
+                    {
+                    	distance.setText("5");
+                    }
+                    
+                }
+                });
+            }
+            
+}
