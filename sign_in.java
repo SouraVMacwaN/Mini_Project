@@ -1,10 +1,12 @@
 import java.awt.*;
-import java.awt.event.*;
 import java.awt.Color;
-import java.awt.Graphics;
-import java.applet.Applet;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 class sign_in extends Frame
 {
@@ -70,15 +72,50 @@ class sign_in extends Frame
 	
     }  
     });  
+    b2.addActionListener(new ActionListener(){  
+        public void actionPerformed(ActionEvent e){  
+
+            String Name = user_Text.getText();
+            String password = pass_Text.getText();
+
+            try{    
+                Connection connection = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/login","sourav", "Asdfgbnm123$"); 
+                 
+                PreparedStatement st = (PreparedStatement) connection
+                        .prepareStatement("Select username, pass from sign_in where username=? and pass=?"); 
+
+                        st.setString(1, Name);
+                        st.setString(2, password);
+                        ResultSet rs = st.executeQuery();
+                 
+                        if (rs.next()) {
+                            f.dispose();
+                            mini oj = new mini();
+                            oj.setVisible(true);
+                        }else{
+                            Label l24=new Label("Wrong details");
+                            l24.setBounds(100,200,80,20);
+                           f.add(l24);
+
+                        }                                          //else
+                    
+                }catch (SQLException sqlException) {
+                    sqlException.printStackTrace();
+                }
+                   
+          
+            }
+ 
+        });  
 		
 				
 	}
 
 	
 	
-	public static void main(String args[])
+	public static void main(String args[])                                                //                 w ro ng det ail s  fi  x
 	{
-		sign_in ob=new sign_in();
+		sign_in ok = new sign_in();
 				
 	} 
 
