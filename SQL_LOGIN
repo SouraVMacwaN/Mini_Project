@@ -4,7 +4,5 @@ CREATE TABLE sign_in (
 	username VARCHAR(20),
     pass VARCHAR(20)
 );
-INSERT INTO sign_in (username)
-VALUES ('Sourav');
-INSERT INTO sign_in (pass)
-VALUES ('12345');
+INSERT INTO sign_in (username, pass)
+VALUES ('Sourav','12345');
