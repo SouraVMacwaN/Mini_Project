@@ -1,0 +1,51 @@
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+public class options extends Frame{
+    
+    options()
+    {
+    Frame f2 = new Frame();
+    f2.setVisible(true);
+    f2.setSize(400,400);
+    f2.setLayout(null);
+
+    Button b1 = new Button("Pace Calculator");
+    Button b2 = new Button("Diet Plan");
+    Button b3 = new Button("Marathons");
+
+    b1.setBounds(50,100,130,74);
+    b2.setBounds(210,100,130,74);
+    b3.setBounds(130,210,130,74);
+
+    f2.add(b1);
+    f2.add(b2);
+    f2.add(b3);
+
+	b1.setFont(new Font("SansSerif", Font.BOLD, 15));
+	b2.setFont(new Font("SansSerif", Font.BOLD, 15));
+    b3.setFont(new Font("SansSerif", Font.BOLD, 15));
+
+    Color c = new Color(0, 83, 98);
+    Color c1 = new Color(38,38,38);
+    f2.setBackground(c);
+
+        b1.setBackground(c1);
+		b1.setForeground(Color.white);
+        b2.setBackground(c1);
+		b2.setForeground(Color.white);
+        b3.setBackground(c1);
+		b3.setForeground(Color.white);
+
+    b1.addActionListener(new ActionListener(){  
+        public void actionPerformed(ActionEvent e){  
+            f2.dispose();
+            pace_calc ob = new pace_calc();
+            ob.setVisible(true);       
+        }  
+        });  
+    }
+                    //                 w ro ng det ail s  fi  x
+	
+
+}
