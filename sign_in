@@ -90,7 +90,7 @@ class sign_in extends Frame
                  
                         if (rs.next()) {
                             f.dispose();
-                            mini oj = new mini();
+                            options oj = new options();
                             oj.setVisible(true);
                         }else{
                             Label l24=new Label("Wrong details");
@@ -113,10 +113,11 @@ class sign_in extends Frame
 
 	
 	
-	public static void main(String args[])                                                //                 w ro ng det ail s  fi  x
+	public static void main(String args[])                    //                 w ro ng det ail s  fi  x
 	{
 		sign_in ok = new sign_in();
 				
 	} 
 
 }
+
