@@ -1,0 +1,76 @@
+#include <stdio.h>
+#include<graphics.h>
+#include<conio.h>
+void ball();
+void lines();
+void lines()
+{
+  setcolor(7);
+  //vertical lines
+
+  line(5,330,5,100);
+  line(5,370,5,420);
+  line(130,290,130,370);
+  line(70,225,70,155);
+  line(130,100,130,170);
+  line(280,370,280,180);
+  line(330,180,330,290);
+  line(420,290,420,420);
+  line(420,100,420,250);
+  line(205,225,205,300);
+  line(330,420,330,350);
+  //horizontal lines
+
+  line(5,100,420,100);
+  line(330,350,370,350);
+  line(420,200,380,200);
+  line(5,330,70,330);
+  line(5,370,70,370);
+  line(70,290,130,290);
+  line(5,225,205,225);
+  line(130,370,280,370);
+  line(280,180,330,180);
+  line(330,290,420,290);
+  line(420,420,5,420);
+  }
+void ball(int j,int k,int l)
+{
+    circle(j,k,l);
+    setcolor(WHITE);
+//    setfillstyle(SOLID_FILL,11);
+  // floodfill(j,k,WHITE);
+
+}
+int backend()        )
+{
+int j=20,k=350,l=10;
+ char c;
+ lines();
+ ball(j,k,l);
+
+ while(2>1)
+ {
+	c=getch();
+cleardevice();
+ if(c=='a') j-=5;
+ if(c=='s') k+=5;
+ if(c=='d') j+=5;
+ if(c=='w') k-=5;
+ if(c==' ') return 0;
+
+lines();
+ball(j,k,l);
+ }
+}
+void main()
+{
+
+    int d=DETECT,g;
+    initgraph(&d,&g,"C:\\TC\\BGI");
+       backend();
+
+
+
+    getch();
+    closegraph();
+}
