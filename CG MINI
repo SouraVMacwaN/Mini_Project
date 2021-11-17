@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include<graphics.h>
 #include<conio.h>
-void ball();
-void lines();
+#include <string.h>
+char trial[20] = "FAILED";
 void lines()
 {
   setcolor(3);
@@ -19,6 +19,7 @@ void lines()
   line(420,100,420,250);
   line(205,225,205,300);
   line(330,420,330,350);
+
   //horizontal lines
 
   line(5,100,420,100);
@@ -34,17 +35,19 @@ void lines()
   line(420,420,5,420);
   setcolor(WHITE);
   }
-void ball(int j,int k,int l)
+void ball(int j,int k,int l)                      //ball
 {
     circle(j,k,l);
     setcolor(CYAN);
     setfillstyle(SOLID_FILL,14);
     floodfill(j,k,WHITE);
+    setcolor(2);
+    circle(420,270,5);
 
 }
 int condition(int j,int k)
 {
-                                                               //vertical lines
+							       //vertical lines
 
   if(j== 10 && k >= 100 && k <= 330){return 1;}
   if(j== 10 && k >= 370 && k <= 420){return 1;}
@@ -71,7 +74,7 @@ int condition(int j,int k)
   if(k >= 350 && k <= 420){
     if(j == 335 || j == 325)return 1;}
 
-                                                            //horizontal lines
+							    //horizontal lines
 
   if(j>=5 && j<=420){
     if(k == 95 || k == 105)return 1;
@@ -106,30 +109,93 @@ int condition(int j,int k)
   if(j>=5 && j<=420){
     if(k == 420 )return 1;
   }
+  if(j == 420 && k == 270)
+  {
+  strcpy(trial, "SUCCESS");
+  return 1;
+  }
   return 0;
 }
 
-void backend()
+void score_TOTAL(int score)                         //score
 {
-int j=20,k=350,l=5;
- char c;
+  char str[100];
+  setcolor(13);
+  settextstyle(0,HORIZ_DIR,2);
+   outtextxy(450,200,"Score: ");
+   sprintf(str,"%d",score);
+    outtextxy(550,200,str);
+}
+
+void backend()                                  //back
+{
+int j=20,k=350,l=5,score = 0;
+ char c,ch,str[100];
  cleardevice();
+ while(1){
+ setcolor(13);
+ settextstyle(3,HORIZ_DIR,8);
+ outtextxy(100,170,"Maze Runner");
+ settextstyle(0,HORIZ_DIR,0);
+ setcolor(9);
+ outtextxy(200,400,"Press 'space' to play the level");
+ ch = getch();
+ if(ch==' ') break;
+ getch();
+  }
+  cleardevice();
+  while(1)
+  {
+    setcolor(13);
+    settextstyle(0,HORIZ_DIR,0);
+    outtextxy(200,100,"Rules :");
+    outtextxy(200,150,"1. Each move counts as 5 points");
+     outtextxy(200,180,"2. Get least amount of points");
+      outtextxy(200,210,"3. Donot touch the lines");
+ setcolor(9);
+ outtextxy(200,400,"Press 'space' to play the level");
+ ch = getch();
+ if(ch==' ') break;
+ getch();
+  }
+  cleardevice();
+  score_TOTAL(score);
  lines();
  ball(j,k,l);
-
- while(2>1)
+ while(1)
  {
   if(condition(j,k) == 1){break;}
 c=getch();
 cleardevice();
- if(c=='a') j-=5;
- if(c=='s') k+=5;
- if(c=='d') j+=5;
- if(c=='w') k-=5;
+ if(c=='a')
+ {j-=5;score+=5;}
+ if(c=='s')
+ {k+=5;score+=5;}
+ if(c=='d')
+ {j+=5;score+=5;}
+ if(c=='w')
+ {k-=5;score+=5;}
  if(c==' ') break;
-
+score_TOTAL(score);
 lines();
 ball(j,k,l);
+ }
+ while(1)
+ {
+   cleardevice();
+   setcolor(13);
+  settextstyle(0,HORIZ_DIR,2);
+    sprintf(str,"%d",score);
+  outtextxy(200,200,"Total Score = ");
+   outtextxy(420,200,str);
+   setcolor(7);
+   outtextxy(280,100,trial);
+   settextstyle(0,HORIZ_DIR,0);
+   setcolor(7);
+   outtextxy(230,400,"Press 'space'twice to exit");
+   ch = getch();
+   if(ch==' ') break;
+
  }
 }
 void main()
@@ -137,10 +203,7 @@ void main()
 
     int d=DETECT,g;
     initgraph(&d,&g,"C:\\TURBOC3\\BGI");
-       backend();
-
-
-
+    backend();
     getch();
     closegraph();
 }
