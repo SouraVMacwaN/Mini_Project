@@ -1,7 +1,10 @@
-import java.awt.event.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 public class sign_up extends Frame {
 
@@ -166,7 +169,7 @@ public class sign_up extends Frame {
         ft.add(cancel);
 	 
 	ft.setLayout(null);
-	ft.setSize(400,400);
+	ft.setSize(400,500);
 	ft.setVisible(true);
 
 	cancel.addActionListener(new ActionListener(){  
@@ -176,8 +179,41 @@ public class sign_up extends Frame {
     }  
     });  
 
+    submit.addActionListener(new ActionListener(){  
+        public void actionPerformed(ActionEvent e){  
+        try{
+            Connection connection = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/login","sourav", "Asdfgbnm123$"); 
+            PreparedStatement Pstatement=connection.prepareStatement("insert into sign_in values(?,?,?,?,?,?,?,?)");
+                Pstatement.setString(1,first.getText());
+                Pstatement.setString(2,last.getText());
+                Pstatement.setString(3,username.getText());
+                Pstatement.setString(4,gender.getText());
+                Pstatement.setString(5,email.getText());
+                Pstatement.setString(6,mobile.getText());
+                Pstatement.setString(7,city.getText());
+                Pstatement.setString(8,password.getText());
+                if(password.getText().equalsIgnoreCase(password2.getText()))
+                {
+                    //Executing query
+                    Pstatement.executeUpdate();
+                    Label confirm=new Label("Registration confirmed");
+                    confirm.setBounds(180,420,20,80);
+                    ft.add(confirm);
+                }
+                else
+                {
+                    Label confirm=new Label("Registration not confirmed");
+                    confirm.setBounds(130,420,180,20);
+                    ft.add(confirm);
+                }
+        }  catch (SQLException sqlException) {
+            sqlException.printStackTrace();
+        }
+        }  
+        });  
+
 	
 
 
     }
-
+}
