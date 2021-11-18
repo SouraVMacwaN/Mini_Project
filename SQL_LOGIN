@@ -1,8 +1,15 @@
 create database login;
 use login;
 CREATE TABLE sign_in (
-	username VARCHAR(20),
-    pass VARCHAR(20)
+	username VARCHAR(225),
+    pass VARCHAR(225),
+    first_name VARCHAR(225),
+    last_name VARCHAR(225),
+    Gender VARCHAR(225),
+    email VARCHAR(225),
+    mobile_no VARCHAR(225),
+    city VARCHAR(225)
 );
-INSERT INTO sign_in (username, pass)
-VALUES ('Sourav','12345');
+
+INSERT INTO sign_in (username, pass,first_name)
+VALUES ('Sourav','12345','SOURAV');
