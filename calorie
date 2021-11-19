@@ -1,0 +1,90 @@
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.lang.model.util.ElementScanner14;
+import javax.management.StringValueExp;
+public class calorie extends Frame{
+calorie() {
+    Frame f = new Frame();
+    f.setVisible(true);
+	f.setSize(400,400);
+	f.setLayout(null);
+    
+    Button b1=new Button("Calculate");
+    b1.setBounds(60,100,50,20);
+    f.add(b1);
+
+Label height=new Label("Enter your height in cm");
+height.setBounds(20,30,120,20);
+f.add(height);
+
+TextField t1=new TextField();
+t1.setBounds(160,30,120,20);
+f.add(t1);
+
+Label weight=new Label("Enter your weight in kg");
+weight.setBounds(20,75,120,20);
+f.add(weight);
+
+TextField t2=new TextField();
+t2.setBounds(160,75,120,20);
+f.add(t2);
+
+Label bmi_text = new Label("BMI");
+bmi_text.setBounds(20,140,60,20);
+f.add(bmi_text);
+
+//color 
+    //Color c = new Color(0, 83, 98);
+    //f.setBackground(c);
+
+    b1.addActionListener(new ActionListener(){  
+        public void actionPerformed(ActionEvent e){  
+            String s1 = t1.getText();    
+            String s2 = t2.getText();
+                     	
+                double h = (Double.parseDouble(s1))/100;    
+                double w = Double.parseDouble(s2);
+                double bmi = w / (h*h);
+                String bmi_ob;
+
+                Label bmi_ans = new Label();
+                bmi_ans.setBounds(80,140,82,20);
+                bmi_ans.setText(String.valueOf(bmi));
+                f.add(bmi_ans);
+
+                if(bmi <= 18.5)
+                {
+                    bmi_ob = "Underweight";
+                }
+                else if(bmi <= 24.9)
+                {
+                    bmi_ob = "Normal weight";
+                }
+                else if(bmi <= 29.5)
+                {
+                    bmi_ob = "Overweight";
+                }
+                else{
+                    bmi_ob = "Obese";
+                }
+                Label bmi_output = new Label();
+                bmi_output.setBounds(200,140,80,20);
+                bmi_output.setText(bmi_ob);
+                f.add(bmi_output);
+
+
+               
+        }
+    });
+
+
+}
+
+public static void main(String args[])                    
+	{
+		calorie ok = new calorie();
+				
+	} 
+}
