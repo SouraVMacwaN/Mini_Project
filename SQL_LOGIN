@@ -9,6 +9,7 @@ CREATE TABLE sign_in (
     email VARCHAR(225),
     mobile_no VARCHAR(225),
     city VARCHAR(225)
+    id INT;
 );
 
 INSERT INTO sign_in (username, pass,first_name)
