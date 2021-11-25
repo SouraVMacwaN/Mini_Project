@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.awt.event.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
@@ -6,16 +7,17 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class sign_up extends Frame {
-
+public class sign_up{
+    Checkbox male;
+    Checkbox female;
+    Label confirm;
+    String s;
     sign_up(){
-        this.setLayout(null);
-
 	Frame ft=new Frame();
         Color cc = new Color(0, 83, 98);
         Color c1 = new Color(0,54,65);
         Color c2 = new Color(38,38,38);
-        ft.setBackground(cc);
+        ft.setBackground(c2);
 
         Label f = new Label("First Name: ");
         TextField first =new TextField(30);
@@ -102,8 +104,9 @@ public class sign_up extends Frame {
         ft.add(password2);
 
         Label gender = new Label("Gender: ");
-        Checkbox male = new Checkbox("Male");
-        Checkbox female = new Checkbox("Female");
+        male = new Checkbox("Male");
+        female = new Checkbox("Female");
+
         gender.setForeground(Color.WHITE);
         male.setForeground(Color.WHITE);
         female.setForeground(Color.WHITE);
@@ -114,10 +117,12 @@ public class sign_up extends Frame {
         ft.add(male);
         ft.add(female);
 
+
         Label birthdate = new Label("Birth Date: ");
         birthdate.setBounds(20,250,120,20);
         birthdate.setForeground(Color.WHITE);
         ft.add(birthdate);
+
         Choice day = new Choice();
         day.setBounds(150,250,50,20);
         day.setForeground(Color.WHITE);
@@ -159,51 +164,66 @@ public class sign_up extends Frame {
         Button submit = new Button("Sign Up");
         submit.setForeground(Color.white);
         submit.setBackground(c1);
-        submit.setBounds(80, 360, 100, 20);
+        submit.setBounds(80, 380, 100, 20);
         ft.add(submit);
 
         Button cancel = new Button("Cancel");
         cancel.setForeground(Color.white);
         cancel.setBackground(Color.red);
-        cancel.setBounds(200, 360, 100, 20);
+        cancel.setBounds(200, 380, 100, 20);
         ft.add(cancel);
-	 
+        male.addItemListener(new ItemListener() {    
+            public void itemStateChanged(ItemEvent e) {   
+                s = "M";
+            }
+        });       
+
+        female.addItemListener(new ItemListener() {    
+            public void itemStateChanged(ItemEvent e) {   
+                s = "F";
+            }
+        });   
 	ft.setLayout(null);
 	ft.setSize(400,500);
 	ft.setVisible(true);
 
 	cancel.addActionListener(new ActionListener(){  
     public void actionPerformed(ActionEvent e){  
-		ft.dispose();
+		System.exit(0);
 	
     }  
     });  
-
     submit.addActionListener(new ActionListener(){  
         public void actionPerformed(ActionEvent e){  
         try{
             Connection connection = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/login","sourav", "Asdfgbnm123$"); 
-            PreparedStatement Pstatement=connection.prepareStatement("insert into sign_in values(?,?,?,?,?,?,?,?)");
+            PreparedStatement Pstatement=connection.prepareStatement("insert into sign_in (first_name, last_name,username,gender,email,mobile_no,city,pass) values(?,?,?,?,?,?,?,?)");
                 Pstatement.setString(1,first.getText());
                 Pstatement.setString(2,last.getText());
                 Pstatement.setString(3,username.getText());
-                Pstatement.setString(4,gender.getText());
+                Pstatement.setString(4,s);
                 Pstatement.setString(5,email.getText());
                 Pstatement.setString(6,mobile.getText());
                 Pstatement.setString(7,city.getText());
                 Pstatement.setString(8,password.getText());
-                if(password.getText().equalsIgnoreCase(password2.getText()))
+
+                if(password.getText().equalsIgnoreCase(password2.getText()) && ((password.getText() != "") || (username.getText() != "")))
                 {
                     //Executing query
                     Pstatement.executeUpdate();
-                    Label confirm=new Label("Registration confirmed");
-                    confirm.setBounds(180,420,20,80);
+                    confirm=new Label("Registration confirmed");
+                    confirm.setForeground(Color.yellow);
+                    confirm.setBounds(150,420,200,20);
                     ft.add(confirm);
+                    ft.dispose();
+                    sign_in q = new sign_in();
                 }
                 else
                 {
-                    Label confirm=new Label("Registration not confirmed");
+                    //confirm.setVisible(false);
+                    confirm=new Label("Registration not confirmed");
                     confirm.setBounds(130,420,180,20);
+                    confirm.setForeground(Color.yellow);
                     ft.add(confirm);
                 }
         }  catch (SQLException sqlException) {
@@ -212,8 +232,9 @@ public class sign_up extends Frame {
         }  
         });  
 
-	
+        
 
 
     }
+   
 }
