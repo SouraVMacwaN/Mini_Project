@@ -1,34 +1,32 @@
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import javax.lang.model.util.ElementScanner14;
-import javax.management.StringValueExp;
-public class calorie extends Frame{
+public class calorie {
 calorie() {
     Frame f = new Frame();
+    
     f.setVisible(true);
-	f.setSize(400,400);
+	f.setSize(400,200);
 	f.setLayout(null);
     
     Button b1=new Button("Calculate");
-    b1.setBounds(60,100,50,20);
+    b1.setBounds(150,110,60,20);
     f.add(b1);
 
 Label height=new Label("Enter your height in cm");
-height.setBounds(20,30,120,20);
+height.setBounds(20,50,140,20);
 f.add(height);
 
 TextField t1=new TextField();
-t1.setBounds(160,30,120,20);
+t1.setBounds(180,50,120,20);
 f.add(t1);
 
 Label weight=new Label("Enter your weight in kg");
-weight.setBounds(20,75,120,20);
+weight.setBounds(20,75,140,20);
 f.add(weight);
 
 TextField t2=new TextField();
-t2.setBounds(160,75,120,20);
+t2.setBounds(180,75,120,20);
 f.add(t2);
 
 Label bmi_text = new Label("BMI");
@@ -36,8 +34,25 @@ bmi_text.setBounds(20,140,60,20);
 f.add(bmi_text);
 
 //color 
-    //Color c = new Color(0, 83, 98);
-    //f.setBackground(c);
+    Color c = new Color(38,38,38);
+    f.setBackground(c);
+    height.setBackground(c);
+    weight.setBackground(c);
+    height.setForeground(Color.WHITE);
+    weight.setForeground(Color.WHITE);
+    b1.setBackground(Color.RED);
+    b1.setForeground(Color.WHITE);
+    bmi_text.setBackground(c);
+    bmi_text.setForeground(Color.WHITE);
+
+    t1.setBackground(c);
+    t2.setBackground(c);
+    t1.setForeground(Color.white);
+    t2.setForeground(Color.white);
+
+    height.setFont(new Font("SansSerif", Font.BOLD, 12));
+    weight.setFont(new Font("SansSerif", Font.BOLD, 12));
+    bmi_text.setFont(new Font("SansSerif", Font.BOLD, 12));
 
     b1.addActionListener(new ActionListener(){  
         public void actionPerformed(ActionEvent e){  
@@ -56,7 +71,7 @@ f.add(bmi_text);
 
                 if(bmi <= 18.5)
                 {
-                    bmi_ob = "Underweight";
+                    bmi_ob = "Under weight";
                 }
                 else if(bmi <= 24.9)
                 {
@@ -73,18 +88,27 @@ f.add(bmi_text);
                 bmi_output.setBounds(200,140,80,20);
                 bmi_output.setText(bmi_ob);
                 f.add(bmi_output);
+                
 
 
                
         }
     });
+    Button go_back=new Button("<- Go back");
+    go_back.setBounds(280,160,100,20);
+    go_back.setBackground(c);
+    go_back.setForeground(Color.green);
+    f.add(go_back);
+    
+    go_back.addActionListener(new ActionListener(){  
+        public void actionPerformed(ActionEvent e){  
 
+            f.dispose();
+            options ob = new options();
+           
+        }
+    });
 
 }
 
-public static void main(String args[])                    
-	{
-		calorie ok = new calorie();
-				
-	} 
 }
