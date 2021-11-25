@@ -1,0 +1,177 @@
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+public class display {
+    display()
+    {
+        Frame ft=new Frame();
+
+        Color cc = new Color(0, 83, 98);
+        //Color c1 = new Color(0,54,65);
+        Color c2 = new Color(38,38,38);
+        ft.setBackground(c2);
+
+        Label f = new Label("First Name ");
+        Label first =new Label();
+        f.setBounds(20,100,80,20);
+        first.setBounds(130,100,152,20);
+        f.setForeground(Color.WHITE);
+        first.setForeground(Color.white);
+        first.setBackground(c2);
+        ft.add(f);
+        ft.add(first);
+
+        Label l = new Label("Last Name ");
+        Label last =new Label();
+        l.setBounds(20,130,80,20);
+        last.setBounds(130,130,152,20);
+        l.setForeground(Color.WHITE);
+        last.setForeground(Color.white);
+        last.setBackground(c2);
+        ft.add(l);
+        ft.add(last);
+
+        Label gender = new Label("Gender ");
+        gender.setBounds(20, 160, 80, 20);
+        Label gender_Text = new Label();
+        gender_Text.setBounds(130, 160, 152, 20);
+        gender.setForeground(Color.WHITE);
+        gender_Text.setForeground(Color.WHITE);
+        gender_Text.setBackground(c2);
+        ft.add(gender);
+        ft.add(gender_Text);
+
+        Label u = new Label("Username ");
+        Label username =new Label();
+        u.setBounds(20,190,80,20);
+        username.setBounds(130,190, 152, 20);
+        u.setForeground(Color.WHITE);
+        username.setForeground(Color.white);
+        username.setBackground(c2);
+        ft.add(u);
+        ft.add(username);
+
+        Label e = new Label("E-mail ");
+        Label email =new Label();
+        e.setBounds(20, 220, 80, 20);
+        email.setBounds(130,220,152, 20);
+        e.setForeground(Color.WHITE);
+        email.setForeground(Color.white);
+        email.setBackground(c2);
+        ft.add(e);
+        ft.add(email);
+
+        Label m = new Label("Mobile No ");
+        Label mobile =new Label();
+        m.setBounds(20, 250, 80, 20);
+        mobile.setBounds(130,250,152,20);
+        m.setForeground(Color.WHITE);
+        mobile.setForeground(Color.white);
+        mobile.setBackground(c2);
+        ft.add(m);
+        ft.add(mobile);
+
+        Label c = new Label("City ");
+        Label city = new Label();
+        c.setForeground(Color.WHITE);
+        city.setForeground(Color.white);
+        city.setBackground(c2);
+        c.setBounds(20,280,80,20);
+        city.setBounds(130, 280, 152, 20);
+        ft.add(c);
+        ft.add(city);
+
+
+        Label user_name=new Label("Username");
+		Label password=new Label("Password");
+		TextField user_Text=new TextField(20);
+		TextField pass_Text=new TextField(20);
+		pass_Text.setEchoChar('*');
+		ft.add(user_name);
+		ft.add(user_Text);
+		ft.add(password);
+		ft.add(pass_Text);
+
+		user_name.setBounds(20,40,90,20);
+        user_Text.setBounds(130,40,150,20);
+		password.setBounds(20,60,90,20);
+		pass_Text.setBounds(130,60,150,20);
+
+	
+		user_name.setForeground(Color.white);
+		password.setForeground(Color.white);
+		user_name.setBackground(c2);
+		password.setBackground(c2);
+		
+		user_Text.setForeground(Color.white);
+		pass_Text.setForeground(Color.white);
+		user_Text.setBackground(c2);
+		pass_Text.setBackground(c2);
+
+		user_name.setFont(new Font("SansSerif", Font.BOLD, 12));
+		password.setFont(new Font("SansSerif", Font.BOLD, 12));
+        Button b1=new Button("Show");
+        b1.setBounds(40,350,100,30);
+        b1.setBackground(c2);
+        b1.setForeground(Color.white);
+        ft.add(b1);
+        b1.addActionListener(new ActionListener(){  
+			public void actionPerformed(ActionEvent e){  
+        
+        try{
+            String Name = user_Text.getText();
+			String pass = pass_Text.getText();
+            Connection connection = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/login","sourav", "Asdfgbnm123$"); 
+                 
+            PreparedStatement st = (PreparedStatement) connection
+            .prepareStatement("Select * from sign_in where username =? and pass =?"); 
+            st.setString(1, Name);
+            st.setString(2,pass);
+    
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                
+                first.setText(rs.getString("first_name"));
+                last.setText(rs.getString("last_name"));
+                username.setText(rs.getString("username"));
+                email.setText(rs.getString("email"));
+                mobile.setText(rs.getString("mobile_no"));
+                gender_Text.setText(rs.getString("gender"));
+                city.setText(rs.getString("city"));
+                
+
+            }
+        
+        }catch (SQLException sqlException) {
+                    sqlException.printStackTrace();
+                }
+        
+            }
+        });
+        Button go_back=new Button("<- Go back");
+        go_back.setBounds(280,350,100,30);
+        go_back.setBackground(c2);
+        go_back.setForeground(Color.green);
+        ft.add(go_back);
+        
+        go_back.addActionListener(new ActionListener(){  
+            public void actionPerformed(ActionEvent e){  
+    
+                ft.dispose();
+                options ob = new options();
+               
+            }
+        });
+    ft.setLayout(null);
+	ft.setSize(400,400);
+	ft.setVisible(true);
+    }
+    
+   
+}
