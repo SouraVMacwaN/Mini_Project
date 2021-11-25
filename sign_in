@@ -1,3 +1,4 @@
+import java.util.*;
 import java.awt.*;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -8,13 +9,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-class sign_in extends Frame
+public class sign_in 
 {
-	TextField user_Text,pass_Text;
+	public  TextField user_Text,pass_Text;
 	Button b1,b2;
-	sign_in()
-	{
-	
+
+
+		sign_in(){
+		
   		Frame f = new Frame();
 		f.setVisible(true);
 		f.setSize(400,400);
@@ -64,60 +66,61 @@ class sign_in extends Frame
 		b1.setFont(new Font("SansSerif", Font.BOLD, 10));
 		b2.setFont(new Font("SansSerif", Font.BOLD, 10));
 
-		 b1.addActionListener(new ActionListener(){  
-    public void actionPerformed(ActionEvent e){  
-		f.dispose();
-		sign_up ob = new sign_up();
-		ob.setVisible(true);
-	
-    }  
-    });  
-    b2.addActionListener(new ActionListener(){  
-        public void actionPerformed(ActionEvent e){  
+		b1.addActionListener(new ActionListener(){  
+			public void actionPerformed(ActionEvent e){  
+				f.dispose();
+				sign_up ob = new sign_up();
+			
+			}
+			}); 
+			
+			b2.addActionListener(new ActionListener(){  
 
-            String Name = user_Text.getText();
-            String password = pass_Text.getText();
-
-            try{    
-                Connection connection = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/login","sourav", "Asdfgbnm123$"); 
-                 
-                PreparedStatement st = (PreparedStatement) connection
-                        .prepareStatement("Select username, pass from sign_in where username=? and pass=?"); 
-
-                        st.setString(1, Name);
-                        st.setString(2, password);
-                        ResultSet rs = st.executeQuery();
-                 
-                        if (rs.next()) {
-                            f.dispose();
-                            options oj = new options();
-                            oj.setVisible(true);
-                        }else{
-                            Label l24=new Label("Wrong details");
-                            l24.setBounds(100,200,80,20);
-                           f.add(l24);
-
-                        }                                          //else
-                    
-                }catch (SQLException sqlException) {
-                    sqlException.printStackTrace();
-                }
-                   
-          
-            }
- 
-        });  
+				public void actionPerformed(ActionEvent e){  
 		
+					String Name = user_Text.getText();
+					String password = pass_Text.getText();
+		
+					try{    
+						Connection connection = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/login","sourav", "Asdfgbnm123$"); 
+						 
+						PreparedStatement st = (PreparedStatement) connection
+								.prepareStatement("Select username,pass from sign_in where username=? and pass=?"); 
+								st.setString(1, Name);
+								st.setString(2, password);
+								ResultSet rs = st.executeQuery();
+						 
+								if (rs.next()) {
+		
+									f.dispose();
+									options oj = new options();
+									
+								}else{
+									Label l24=new Label("WRONG DETAILS");
+									l24.setBounds(150,280,120,20);
+									l24.setForeground(Color.YELLOW);
+								   f.add(l24);
+		
+								}                                         //else
+							
+						}catch (SQLException sqlException) {
+							sqlException.printStackTrace();
+						}
+						   
+				  
+					}
+		 
+				});
 				
+
 	}
 
-	
-	
-	public static void main(String args[])                    //                 w ro ng det ail s  fi  x
+
+	public static void main(String args[])                    
 	{
 		sign_in ok = new sign_in();
-				
-	} 
+
+	}
+
 
 }
-
