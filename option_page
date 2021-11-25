@@ -1,7 +1,7 @@
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-public class options extends Frame{
+public class options {
     
     options()
     {
@@ -11,20 +11,24 @@ public class options extends Frame{
     f2.setLayout(null);
 
     Button b1 = new Button("Pace Calculator");
-    Button b2 = new Button("Diet Plan");
-    Button b3 = new Button("Marathons");
+    Button b2 = new Button("BMI");
+    Button b3 = new Button("Calorie Counter");
+    Button b4 = new Button("User data");
 
     b1.setBounds(50,100,130,74);
     b2.setBounds(210,100,130,74);
-    b3.setBounds(130,210,130,74);
+    b3.setBounds(50,210,130,74);
+    b4.setBounds(210,210,130,74);
 
     f2.add(b1);
     f2.add(b2);
     f2.add(b3);
+    f2.add(b4);
 
 	b1.setFont(new Font("SansSerif", Font.BOLD, 15));
 	b2.setFont(new Font("SansSerif", Font.BOLD, 15));
     b3.setFont(new Font("SansSerif", Font.BOLD, 15));
+    b4.setFont(new Font("SansSerif", Font.BOLD, 15));
 
     Color c = new Color(0, 83, 98);
     Color c1 = new Color(38,38,38);
@@ -36,16 +40,54 @@ public class options extends Frame{
 		b2.setForeground(Color.white);
         b3.setBackground(c1);
 		b3.setForeground(Color.white);
+        b4.setBackground(c1);
+		b4.setForeground(Color.white);
 
     b1.addActionListener(new ActionListener(){  
         public void actionPerformed(ActionEvent e){  
             f2.dispose();
             pace_calc ob = new pace_calc();
-            ob.setVisible(true);       
+                   
         }  
         });  
-    }
-                    //                 w ro ng det ail s  fi  x
-	
+
+    b2.addActionListener(new ActionListener(){  
+            public void actionPerformed(ActionEvent e){  
+                f2.dispose();
+                calorie oj = new calorie();
+                    
+            }  
+            });  
+    b4.addActionListener(new ActionListener(){  
+            public void actionPerformed(ActionEvent e){  
+                f2.dispose();
+                display op = new display();
+                       
+                }  
+                });  
+
+    b3.addActionListener(new ActionListener(){  
+            public void actionPerformed(ActionEvent e){  
+                    f2.dispose();
+                    calc_cal op = new calc_cal();
+                               
+                    }  
+                    });  
+
+    Button go_back=new Button("EXIT");
+    go_back.setBounds(150,350,100,30);
+    go_back.setBackground(c);
+    go_back.setForeground(Color.green);
+    f2.add(go_back);
+    
+    go_back.addActionListener(new ActionListener(){  
+        public void actionPerformed(ActionEvent e){  
+
+            System.exit(0);
+            
+        }
+    });
+                    
+}
 
 }
