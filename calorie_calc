@@ -1,0 +1,168 @@
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+
+
+public class pace_calc {
+	TextField distance;
+	static Choice m;
+            pace_calc(){
+                Frame p = new Frame();
+                p.setTitle("Marathon Pace Calculator");
+                
+                Color color2 = new Color(38, 38, 38);
+                p.setBackground(color2);
+
+                Label p1 = new Label("Event");
+                p1.setBounds(20, 60, 120, 20);
+                p1.setForeground(Color.WHITE);
+               p1.setFont(new Font("SansSerif", Font.BOLD, 14));
+                p.add(p1);
+
+                m = new Choice();
+               
+                
+                m.setBounds(140, 60, 120, 20);
+                m.setForeground(Color.WHITE);
+                m.setBackground(color2);
+                m.setFont(new Font("SansSerif", Font.PLAIN, 14));
+                
+                m.add("");
+                m.add("marathon");
+                m.add("half_marathon");
+                m.add("m_thirty");
+                m.add("m_fifteen");
+                m.add("m_ten");
+                m.add("m_five");
+                p.add(m);
+                
+                
+                Label p2 = new Label("Distance(in km)");
+                p2.setBounds(20, 100, 120, 20);
+                p2.setForeground(Color.WHITE);
+                p2.setFont(new Font("SansSerif", Font.BOLD, 14));
+                p.add(p2);
+
+                distance = new TextField("0.0");
+                distance.setBounds(140, 100, 100, 20);
+                distance.setForeground(Color.white);
+                distance.setBackground(color2);
+                distance.setFont(new Font("SansSerif", Font.BOLD, 14));
+                p.add(distance);
+
+
+
+                Label p3 = new Label("Time(in s)");
+                p3.setBounds(20, 130, 120, 20);
+                p3.setForeground(Color.WHITE);
+                p3.setFont(new Font("SansSerif", Font.BOLD, 14));
+                p.add(p3);
+
+                TextField time = new TextField("0.0 ");
+                time.setBounds(140, 130, 100, 20);
+                time.setForeground(Color.white);
+                time.setBackground(color2);
+                time.setFont(new Font("SansSerif", Font.BOLD, 14));
+                p.add(time);
+
+
+
+
+                Label p5 = new Label("Pace");
+                p5.setBounds(20, 290, 60, 20);
+                p5.setForeground(Color.WHITE);
+                p5.setFont(new Font("SansSerif", Font.BOLD, 20));
+                p.add(p5);
+
+                Label pace = new Label("0.0");
+                pace.setBounds(90, 275, 250, 55);
+                pace.setForeground(Color.white);
+                pace.setBackground(color2);
+                pace.setFont(new Font("SansSerif", Font.BOLD, 14));
+                p.add(pace);
+
+                Button b = new Button("Calculate Pace");
+                b.setBounds(120, 220, 140, 30);
+                b.setForeground(Color.white);
+                b.setBackground(Color.RED);
+                b.setFont(new Font("SansSerif", Font.BOLD, 14));
+                p.add(b);
+                
+                
+                b.addActionListener(new ActionListener(){  
+                    public void actionPerformed(ActionEvent e){  
+                    	 String s1 = distance.getText();    
+                         String s2 = time.getText();
+                     	
+                         double d = Double.parseDouble(s1);    
+                         double t = Double.parseDouble(s2);    
+                         double ans = 0;
+                         
+                         ans = d/t;
+                         String result = String.valueOf(ans); 
+                    	 pace.setText(result + (" km/s"));    
+                    	 
+                    	 
+                    }  
+                    });  
+                p.setLayout(null);
+                p.setSize(400, 400);
+                p.setVisible(true);
+                
+                m.addItemListener(new ItemListener(){
+                public void itemStateChanged(ItemEvent e)
+                {
+                	String temp = (String)m.getSelectedItem();
+                    if(temp == "marathon")
+                    {
+                    	distance.setText("100");
+                    }
+                    
+                    if(temp == "half_marathon")
+                    {
+                    	distance.setText("50");
+                    }
+                    
+                    if(temp == "m_thirty")
+                    {
+                    	distance.setText("30");
+                    }
+                    
+                    if(temp == "m_fifteen")
+                    {
+                    	distance.setText("15");
+                    }
+                    
+                    if(temp == "m_ten")
+                    {
+                    	distance.setText("10");
+                    }
+                    
+                    if(temp == "m_five")
+                    {
+                    	distance.setText("5");
+                    }
+                    
+                }
+                });
+
+    Button go_back=new Button("<- Go back");
+    go_back.setBounds(280,365,100,20);
+    go_back.setBackground(color2);
+    go_back.setForeground(Color.green);
+    p.add(go_back);
+    go_back.addActionListener(new ActionListener(){  
+        public void actionPerformed(ActionEvent e){  
+             
+            p.dispose();
+            options ob = new options();
+             
+        }  
+        });  
+
+            }
+           
+            
+}
