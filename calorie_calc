@@ -1,168 +1,141 @@
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
+import java.awt.event.*;
+public class calc_cal {
+    double  et;
+    calc_cal()
+    {
+        Color c = new Color(38,38,38);
 
+        Frame f = new Frame();
+        Label cal = new Label("Average calorie intake per day : ");
+        Label height= new Label("Height (IN CM)");
+        Label weight= new Label("Weight (IN KG)");
+        Label age= new Label("Age");
+        Label exer=new Label("Exercise per day : ");
+        Label ans=new Label();
+        Label temp = new Label();
+   
+        TextField age_text = new TextField();
+        TextField height_text = new TextField();
+        TextField weight_text = new TextField();
 
-public class pace_calc {
-	TextField distance;
-	static Choice m;
-            pace_calc(){
-                Frame p = new Frame();
-                p.setTitle("Marathon Pace Calculator");
-                
-                Color color2 = new Color(38, 38, 38);
-                p.setBackground(color2);
+        Button b1 = new Button("Calculate");
 
-                Label p1 = new Label("Event");
-                p1.setBounds(20, 60, 120, 20);
-                p1.setForeground(Color.WHITE);
-               p1.setFont(new Font("SansSerif", Font.BOLD, 14));
-                p.add(p1);
+        CheckboxGroup cbg = new CheckboxGroup();
+        Checkbox checkBox1 = new Checkbox("Daily exercise", cbg, false); 
+        Checkbox checkBox2 = new Checkbox("Intense exercise 6-7 times per week", cbg, false); 
+        Checkbox checkBox3 = new Checkbox("Very intense exercise daily", cbg, false); 
 
-                m = new Choice();
+        
+        height.setBounds(20,40,100,20);
+        weight.setBounds(20,70,100,20);
+        age.setBounds(20,100,100,20);
+        height_text.setBounds(160,40,100,20);
+        weight_text.setBounds(160,70,100,20);
+        age_text.setBounds(160,100,100,20);
+        exer.setBounds(20,130,100,20);
+        checkBox1.setBounds(160,130,100,20);
+        checkBox2.setBounds(160,150,200,20);
+        checkBox3.setBounds(160,170,200,20);
+        cal.setBounds(20,250,170,20);
+        ans.setBounds(200,250,300,20);
+        b1.setBounds(150,210,80,20);
+
+        f.setBackground(c);
+        height_text.setBackground(c);
+        weight_text.setBackground(c);
+        age_text.setBackground(c);
+        height_text.setForeground(Color.white);
+        weight_text.setForeground(Color.white);
+        age_text.setForeground(Color.white);
+        height.setForeground(Color.white);
+        weight.setForeground(Color.white);
+        age.setForeground(Color.white);
+        ans.setForeground(Color.white);
+        ans.setBackground(c);
+        cal.setForeground(Color.white);
+        b1.setForeground(Color.yellow);
+        b1.setBackground(c);
+        checkBox1.setForeground(Color.white);
+        checkBox2.setForeground(Color.white);
+        checkBox3.setForeground(Color.white);
+        exer.setForeground(Color.white);
+
+        Button go_back=new Button("<- Go back");
+        go_back.setBounds(280,360,100,20);
+        go_back.setBackground(c);
+        go_back.setForeground(Color.green);
+        f.add(go_back);
+        
+        go_back.addActionListener(new ActionListener(){  
+            public void actionPerformed(ActionEvent e){  
+    
+                f.dispose();
+                options ob = new options();
                
-                
-                m.setBounds(140, 60, 120, 20);
-                m.setForeground(Color.WHITE);
-                m.setBackground(color2);
-                m.setFont(new Font("SansSerif", Font.PLAIN, 14));
-                
-                m.add("");
-                m.add("marathon");
-                m.add("half_marathon");
-                m.add("m_thirty");
-                m.add("m_fifteen");
-                m.add("m_ten");
-                m.add("m_five");
-                p.add(m);
-                
-                
-                Label p2 = new Label("Distance(in km)");
-                p2.setBounds(20, 100, 120, 20);
-                p2.setForeground(Color.WHITE);
-                p2.setFont(new Font("SansSerif", Font.BOLD, 14));
-                p.add(p2);
-
-                distance = new TextField("0.0");
-                distance.setBounds(140, 100, 100, 20);
-                distance.setForeground(Color.white);
-                distance.setBackground(color2);
-                distance.setFont(new Font("SansSerif", Font.BOLD, 14));
-                p.add(distance);
-
-
-
-                Label p3 = new Label("Time(in s)");
-                p3.setBounds(20, 130, 120, 20);
-                p3.setForeground(Color.WHITE);
-                p3.setFont(new Font("SansSerif", Font.BOLD, 14));
-                p.add(p3);
-
-                TextField time = new TextField("0.0 ");
-                time.setBounds(140, 130, 100, 20);
-                time.setForeground(Color.white);
-                time.setBackground(color2);
-                time.setFont(new Font("SansSerif", Font.BOLD, 14));
-                p.add(time);
-
-
-
-
-                Label p5 = new Label("Pace");
-                p5.setBounds(20, 290, 60, 20);
-                p5.setForeground(Color.WHITE);
-                p5.setFont(new Font("SansSerif", Font.BOLD, 20));
-                p.add(p5);
-
-                Label pace = new Label("0.0");
-                pace.setBounds(90, 275, 250, 55);
-                pace.setForeground(Color.white);
-                pace.setBackground(color2);
-                pace.setFont(new Font("SansSerif", Font.BOLD, 14));
-                p.add(pace);
-
-                Button b = new Button("Calculate Pace");
-                b.setBounds(120, 220, 140, 30);
-                b.setForeground(Color.white);
-                b.setBackground(Color.RED);
-                b.setFont(new Font("SansSerif", Font.BOLD, 14));
-                p.add(b);
-                
-                
-                b.addActionListener(new ActionListener(){  
-                    public void actionPerformed(ActionEvent e){  
-                    	 String s1 = distance.getText();    
-                         String s2 = time.getText();
-                     	
-                         double d = Double.parseDouble(s1);    
-                         double t = Double.parseDouble(s2);    
-                         double ans = 0;
-                         
-                         ans = d/t;
-                         String result = String.valueOf(ans); 
-                    	 pace.setText(result + (" km/s"));    
-                    	 
-                    	 
-                    }  
-                    });  
-                p.setLayout(null);
-                p.setSize(400, 400);
-                p.setVisible(true);
-                
-                m.addItemListener(new ItemListener(){
-                public void itemStateChanged(ItemEvent e)
-                {
-                	String temp = (String)m.getSelectedItem();
-                    if(temp == "marathon")
-                    {
-                    	distance.setText("100");
-                    }
-                    
-                    if(temp == "half_marathon")
-                    {
-                    	distance.setText("50");
-                    }
-                    
-                    if(temp == "m_thirty")
-                    {
-                    	distance.setText("30");
-                    }
-                    
-                    if(temp == "m_fifteen")
-                    {
-                    	distance.setText("15");
-                    }
-                    
-                    if(temp == "m_ten")
-                    {
-                    	distance.setText("10");
-                    }
-                    
-                    if(temp == "m_five")
-                    {
-                    	distance.setText("5");
-                    }
-                    
-                }
-                });
-
-    Button go_back=new Button("<- Go back");
-    go_back.setBounds(280,365,100,20);
-    go_back.setBackground(color2);
-    go_back.setForeground(Color.green);
-    p.add(go_back);
-    go_back.addActionListener(new ActionListener(){  
-        public void actionPerformed(ActionEvent e){  
-             
-            p.dispose();
-            options ob = new options();
-             
-        }  
-        });  
-
             }
-           
-            
+        });
+        f.add(ans);
+        f.add(b1);
+        f.add(cal);
+        f.add(height);
+        f.add(weight);
+        f.add(age);
+        f.add(height_text);
+        f.add(weight_text);
+        f.add(age_text);
+        f.add(exer);
+        f.add(cal);
+        f.add(checkBox1);
+        f.add(checkBox2);
+        f.add(checkBox3);
+        f.add(temp);
+    
+
+        checkBox1.addItemListener(new ItemListener() {    
+            public void itemStateChanged(ItemEvent e) {   
+                et = 0.2;
+            }
+        }); 
+
+        checkBox2.addItemListener(new ItemListener() {    
+            public void itemStateChanged(ItemEvent e) {   
+               et = 0.6;
+            }
+        }); 
+
+        checkBox3.addItemListener(new ItemListener() {    
+            public void itemStateChanged(ItemEvent e) {   
+                et = 1.1;
+            }
+        }); 
+        b1.addActionListener(new ActionListener(){  
+            public void actionPerformed(ActionEvent e){  
+                
+                String s = height_text.getText();
+                String s1 = weight_text.getText();
+                String s2 = age_text.getText();
+                double h = (Double.parseDouble(s));
+                double w = (Double.parseDouble(s1));
+                double a = (Double.parseDouble(s2));
+                 
+                double calorie = ((13.397 * w) + (4.799 * h) - (5.677 * a) + 88.362) * (1.2);
+                ans.setText(String.valueOf(calorie) + "   calories per day");
+
+            }  
+            });  
+        
+        f.setVisible(true);
+		f.setSize(400,400);
+		f.setLayout(null);
+
+
+    }
+    public static void main(String args[])                    
+	{
+		calc_cal ok = new calc_cal();
+
+	}
 }
