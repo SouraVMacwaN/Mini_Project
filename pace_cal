@@ -5,17 +5,15 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
 
-public class pace_calc extends  Frame{
+public class pace_calc {
 	TextField distance;
 	static Choice m;
             pace_calc(){
                 Frame p = new Frame();
                 p.setTitle("Marathon Pace Calculator");
-                this.setLayout(null);
-
-                Color color = new Color(0, 83, 98);
+                
                 Color color2 = new Color(38, 38, 38);
-                p.setBackground(color);
+                p.setBackground(color2);
 
                 Label p1 = new Label("Event");
                 p1.setBounds(20, 60, 120, 20);
@@ -47,7 +45,7 @@ public class pace_calc extends  Frame{
                 p2.setFont(new Font("SansSerif", Font.BOLD, 14));
                 p.add(p2);
 
-                distance = new TextField();
+                distance = new TextField("0.0");
                 distance.setBounds(140, 100, 100, 20);
                 distance.setForeground(Color.white);
                 distance.setBackground(color2);
@@ -62,7 +60,7 @@ public class pace_calc extends  Frame{
                 p3.setFont(new Font("SansSerif", Font.BOLD, 14));
                 p.add(p3);
 
-                TextField time = new TextField();
+                TextField time = new TextField("0.0 ");
                 time.setBounds(140, 130, 100, 20);
                 time.setForeground(Color.white);
                 time.setBackground(color2);
@@ -78,8 +76,8 @@ public class pace_calc extends  Frame{
                 p5.setFont(new Font("SansSerif", Font.BOLD, 20));
                 p.add(p5);
 
-                TextField pace = new TextField();
-                pace.setBounds(90, 290, 250, 55);
+                Label pace = new Label("0.0");
+                pace.setBounds(90, 275, 250, 55);
                 pace.setForeground(Color.white);
                 pace.setBackground(color2);
                 pace.setFont(new Font("SansSerif", Font.BOLD, 14));
@@ -149,6 +147,22 @@ public class pace_calc extends  Frame{
                     
                 }
                 });
+
+    Button go_back=new Button("<- Go back");
+    go_back.setBounds(280,365,100,20);
+    go_back.setBackground(color2);
+    go_back.setForeground(Color.green);
+    p.add(go_back);
+    go_back.addActionListener(new ActionListener(){  
+        public void actionPerformed(ActionEvent e){  
+             
+            p.dispose();
+            options ob = new options();
+             
+        }  
+        });  
+
             }
+           
             
 }
